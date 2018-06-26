@@ -5,6 +5,7 @@ delete from restaurant;
 delete from category;
 delete from user;
 delete from city;
+delete from level_restaurant;
 
 insert into Category(id,name) values(1,'Familiar');
 insert into Category(id,name) values(2,'Bar');
@@ -21,20 +22,26 @@ insert into city(id,name) values(7,'Oruro');
 insert into city(id,name) values(8,'Potosi');
 insert into city(id,name) values(9,'Sucre');
 
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(1,'Bonito lugar, con un ambiente bastante relajado',-17.385822,0,-66.151074,'ChillBar',1);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(2,'Hermoso restaurante, con todas las comodidades que el cliente necesita para probar la mejor comida del pais',-17.782898,0,-63.177353,'Cambinga',2);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(3,'Excelente restaurante con vistas al rio',-11.104799,0,-67.553445,'Pando',3);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(4,'El mejor restaurante de toda Tarija',-21.531609,0,-64.739764,'Tarijenta',6);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(5,'El mejor lugar para que tu y tu paladar puedan disfrutar de Chuquisaca',-19.351747,0,-64.477114,'Chuquisacon',5);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(6,'Bonito restaurante con todas las comodidades',-17.968924,0,-67.106445,'La Orurenia',7);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(7,'Hermoso restaurante con gran variedad de comida',-14.830854,0,-64.904666,'Beniano',4);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(8,'El mejor restaurante de la ciudad de la capital de Bolivia',-19.018268,0,-65.263559,'Sucremanta',9);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(9,'Restaurante agradable con buena musica y buena comida',-19.558913,0,-65.761375,'Potosina',8);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(10,'Restarante con gran variedad de comida cochala',-17.389631,0, -66.143657,'Cochalita',1);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(11,'Restaurante donde predomina la mejor carne asada del pais',-17.375413,0,-66.153654,'Kansas',1);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(12,'El mejor lugar para compartir con quien mas quieres',-17.370659,0,-66.148369,'Cayena',1);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(13,'La mejor polleria del pais, ubicado en una de las mejores zonas de cochabamba',-17.378834,0,-66.159269,'Kingdom',1);
-insert into Restaurant(id,description,latitude,likes,longitude,name,city_id) values(14,'Restaurante para compartir con la familia',-17.376768,0,-66.156887,'Globos',1);
+insert into level_restaurant(id,name,rating) values(1,'Impopular',1);
+insert into level_restaurant(id,name,rating) values(2, 'Poco popular',2);
+insert into level_restaurant(id,name,rating) values(3,'Intermedio',3);
+insert into level_restaurant(id,name,rating) values(4,'Popular',4);
+insert into level_restaurant(id,name,rating) values(5,'Muy popular',5);
+
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(1,'Bonito lugar, con un ambiente bastante relajado',-17.385822,0,-66.151074,'ChillBar',1,2);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(2,'Hermoso restaurante, con todas las comodidades que el cliente necesita para probar la mejor comida del pais',-17.782898,0,-63.177353,'Cambinga',2,3);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(3,'Excelente restaurante con vistas al rio',-11.104799,0,-67.553445,'Pando',3,3);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(4,'El mejor restaurante de toda Tarija',-21.531609,0,-64.739764,'Tarijenta',6,1);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(5,'El mejor lugar para que tu y tu paladar puedan disfrutar de Chuquisaca',-19.351747,0,-64.477114,'Chuquisacon',5,4);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(6,'Bonito restaurante con todas las comodidades',-17.968924,0,-67.106445,'La Orurenia',7,4);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(7,'Hermoso restaurante con gran variedad de comida',-14.830854,0,-64.904666,'Beniano',4,5);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(8,'El mejor restaurante de la ciudad de la capital de Bolivia',-19.018268,0,-65.263559,'Sucremanta',9,3);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(9,'Restaurante agradable con buena musica y buena comida',-19.558913,0,-65.761375,'Potosina',8,3);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(10,'Restarante con gran variedad de comida cochala',-17.389631,0, -66.143657,'Cochalita',1,4);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(11,'Restaurante donde predomina la mejor carne asada del pais',-17.375413,0,-66.153654,'Kansas',1,5);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(12,'El mejor lugar para compartir con quien mas quieres',-17.370659,0,-66.148369,'Cayena',1,4);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(13,'La mejor polleria del pais, ubicado en una de las mejores zonas de cochabamba',-17.378834,0,-66.159269,'Kingdom',1,5);
+insert into Restaurant(id,description,latitude,likes,longitude,name,city_id,level_id) values(14,'Restaurante para compartir con la familia',-17.376768,0,-66.156887,'Globos',1,4);
 
 insert into restaurant_category(restaurant_id,category_id) values(1,2);
 insert into restaurant_category(restaurant_id,category_id) values(2,3);

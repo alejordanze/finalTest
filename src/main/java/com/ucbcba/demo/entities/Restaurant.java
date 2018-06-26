@@ -29,6 +29,10 @@ public class Restaurant {
     @JoinColumn(name = "city_id")
     private City city;
 
+    @ManyToOne
+    @JoinColumn(name = "level_id")
+    private LevelRestaurant levelRestaurant;
+
     @NotNull
     private Float latitude;
 
@@ -124,5 +128,13 @@ public class Restaurant {
 
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
+    }
+
+    public LevelRestaurant getLevelRestaurant() {
+        return levelRestaurant;
+    }
+
+    public void setLevelRestaurant(LevelRestaurant levelRestaurant) {
+        this.levelRestaurant = levelRestaurant;
     }
 }

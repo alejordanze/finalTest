@@ -31,10 +31,17 @@ public class RestaurantController {
     private UserLikesService userLikesService;
     private UserService userService;
     private CommentService commentService;
+    private LevelService levelService;
 
     @Autowired
     public void setRestaurantService(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
+    }
+
+
+    @Autowired
+    public void setLevelService(LevelService levelService) {
+        this.levelService = levelService;
     }
 
     @Autowired
@@ -84,6 +91,7 @@ public class RestaurantController {
         model.addAttribute("restaurantCategories", categoryService.listAllCategories());
         model.addAttribute("cities", cityService.listAllCities());
         model.addAttribute("restaurant", new Restaurant());
+        model.addAttribute("levels",levelService.listAllLevels());
         return "newRestaurant";
     }
 
@@ -155,6 +163,7 @@ public class RestaurantController {
         model.addAttribute("cities", cityService.listAllCities());
         model.addAttribute("photos", restaurantPhotos);
         model.addAttribute("images", photoService.listAllPhotosById(id));
+        model.addAttribute("levels",levelService.listAllLevels());
         return "restaurantForm";
     }
 
@@ -193,7 +202,15 @@ public class RestaurantController {
         Comment comment=new Comment();
         Integer likes = userLikesService.getLikes(id);
         Boolean isLiked = false;
-
+        Integer average = restaurantService.getScore(id);
+        LevelRestaurant level = levelService.getLevel(restaurant.getLevelRestaurant().getId());
+        final LevelRestaurant[] realLevel = {null};
+        Iterable<LevelRestaurant> levelList = levelService.listAllLevels();
+        levelList.forEach(lev -> {
+            if(lev.getRating()== average)
+                realLevel[0] = lev;
+        });
+        System.out.println(realLevel[0].getName());
         List restaurantPhotos = new ArrayList();
         List<Photo> photos = (List<Photo>) photoService.listAllPhotosById(id);
         byte[] encodeBase64;
@@ -222,7 +239,9 @@ public class RestaurantController {
         model.addAttribute("role", getUserRole(auth));
         model.addAttribute("likes", likes);
         model.addAttribute("calification", califs);
-        model.addAttribute("averageScore", restaurantService.getScore(id));
+        model.addAttribute("averageScore", average);
+        model.addAttribute("level", level);
+        model.addAttribute("realLevel", realLevel[0]);
         model.addAttribute("commentError", "You can only add one comment by Restaurant");
         model.addAttribute("restaurant", restaurant);
         Restaurant mapRest = new Restaurant();
